@@ -141,7 +141,7 @@ module Pod
     end
 
     def update_swift_version
-      file_names = ['Example/PROJECT.xcodeproj/project.pbxproj']
+      file_names = ['Example/'+@pod_name+'.xcodeproj/project.pbxproj']
 
       file_names.each do |file_name|
         text = File.read(file_name)
