@@ -86,6 +86,7 @@ module Pod
           end
       end
 
+      update_swift_version
       replace_variables_in_files
       clean_template_files
       rename_template_files
@@ -134,6 +135,15 @@ module Pod
         text.gsub!("${YEAR}", year)
         text.gsub!("${DATE}", date)
         File.open(file_name, "w") { |file| file.puts text }
+      end
+    end
+
+    def update_swift_version
+      file_names = ['Example/PROJECT.xcodeproj/project.pbxproj']
+
+      file_names.each do |file_name|
+        text = File.read(file_name)
+        text.gsub!("SWIFT_VERSION = 4.0", "SWIFT_VERSION = 5.1")
       end
     end
 
