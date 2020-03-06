@@ -131,6 +131,8 @@ module Pod
         text.gsub!("${POD_NAME}", @pod_name)
         text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
         text.gsub!("${USER_NAME}", user_name)
+        text.gsub!("${ACCOUNT_NAME}", account_name)
+        text.gsub!("${GIT_PROVIDER}", git_provider)
         text.gsub!("${USER_EMAIL}", user_email)
         text.gsub!("${YEAR}", year)
         text.gsub!("${DATE}", date)
@@ -205,6 +207,14 @@ module Pod
 
     def user_name
       (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
+    end
+
+    def account_name
+      (ENV['GIT_ACCOUNT_NAME'] || user_name).strip
+    end
+
+    def git_provider
+      (ENV['GIT_PROVIDER'] || 'github.com').strip
     end
 
     def github_user_name
