@@ -146,6 +146,7 @@ module Pod
       file_names.each do |file_name|
         text = File.read(file_name)
         text.gsub!("SWIFT_VERSION = 4.0", "SWIFT_VERSION = 5.1")
+        File.open(file_name, "w") { |file| file.puts text }
       end
     end
 
