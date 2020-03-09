@@ -24,6 +24,10 @@ let package = Package(
             name: "${POD_NAME}",
             dependencies: [],
             path: "${POD_NAME}/Classes"),
+        .target(
+            name: "${POD_NAME}Example",
+            dependencies: ["${POD_NAME}"],
+            path: "Example/${POD_NAME}"),
         .testTarget(
             name: "${POD_NAME}Tests",
             dependencies: [
