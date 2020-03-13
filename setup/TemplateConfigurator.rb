@@ -94,6 +94,7 @@ module Pod
       customise_prefix
       rename_classes_folder
       ensure_carthage_compatibility
+      performGitConfig
       reinitialize_git_repo
       run_pod_install
 
@@ -192,6 +193,11 @@ module Pod
 
     def rename_classes_folder
       FileUtils.mv "Pod", @pod_name
+    end
+
+    def performGitConfig
+      `git config --local user.name #{user_name}`
+      `git config --local user.email #{user_email}`
     end
 
     def reinitialize_git_repo
