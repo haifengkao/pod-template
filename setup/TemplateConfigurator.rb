@@ -94,8 +94,8 @@ module Pod
       customise_prefix
       rename_classes_folder
       ensure_carthage_compatibility
-      performGitConfig
       reinitialize_git_repo
+      performGitConfig
       run_pod_install
 
       @message_bank.farewell_message
