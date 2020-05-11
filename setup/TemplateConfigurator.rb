@@ -128,6 +128,10 @@ module Pod
     def replace_variables_in_files
       file_names = ['POD_LICENSE', 'POD_README.md', 'NAME.podspec', '.travis.yml', podfile_path, 'package.swift']
       file_names.each do |file_name|
+        if not File.file?(file_name)
+          # skip non-existing files
+          next
+        end
         text = File.read(file_name)
         text.gsub!("${POD_NAME}", @pod_name)
         text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
